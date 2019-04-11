@@ -1,6 +1,13 @@
 
-<h1>Welcome DjangoCon peeps!</h1>
-{% if latest_poll_list %}
+<h1>Welcome to index page!</h1>
+{% if user.is_authenticated %}
+<a href = '/polls/logout/' style = "float:right"><u><b>Logout</b></u></a>
+{% endif %}
+{% if latest_poll_list == 'login' %}
+<a href = '/polls/login/'><h1>first login</h1></a>
+<a href = '/polls/register'><p>or create a new account</p></a>
+{% endif %}
+{% if latest_poll_list != 'login' %}
     <ul>
     {% for poll in latest_poll_list %}
     <li><a href="/polls/{{poll.id}}/">{{ poll.question_text }}</a></li>
